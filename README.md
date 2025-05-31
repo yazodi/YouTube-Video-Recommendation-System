@@ -1,70 +1,89 @@
-# 🎥 YouTube Video Recommendation System (Content-Based Filtering)
+# 🎬 YouTube Video Recommendation System (Content-Based Filtering)
 
-This project builds a **content-based video recommendation system** using YouTube trending videos dataset.  
-It recommends similar videos based on the content — specifically the **title**, **description**, and **tags** using NLP techniques.
+Bu proje, YouTube'daki videolara benzer içerikleri öneren bir **content-based filtering** sistemidir.  
+Kullanıcı bir video başlığı girer ve sistem, **başlık**, **açıklama** ve **etiketleri** temel alarak benzer 5 videoyu önerir.
 
 ---
 
 ## 📦 Dataset
 
-- Source: [YouTube Trending Videos Dataset - Kaggle](https://www.kaggle.com/datasets/datasnaek/youtube-new)
-- File used: `USvideos.csv`
+- Kaynak: [YouTube Trending Videos - Kaggle](https://www.kaggle.com/datasets/datasnaek/youtube-new)
+- Kullanılan dosya: `USvideos.csv` (küçültülmüş örneği: `USvideos_sample.csv`)
 
 ---
 
-## 🧰 Technologies Used
+## 🧠 Kullanılan Teknolojiler
 
-- `pandas`, `numpy`
-- `sklearn` (TF-IDF, cosine similarity)
-- `matplotlib`, `wordcloud` for visualization
-
----
-
-## 🔍 Project Steps
-
-1. Loaded the dataset and selected `title`, `description`, and `tags`.
-2. Preprocessed the text and merged features into one `text` column.
-3. Applied **TF-IDF vectorization** to convert text to vectors.
-4. Computed **cosine similarity** between video entries.
-5. Implemented a function to recommend top-5 most similar videos to a given title.
+- Python, pandas, numpy
+- scikit-learn → **TF-IDF Vectorizer**, **cosine similarity**
+- joblib (model kaydetme)
+- matplotlib, wordcloud (görselleştirme)
+- Streamlit (web uygulaması)
 
 ---
 
-## 📊 Visualization
+## 🔍 Proje Adımları
 
-- **Top 15 Tags** in trending videos
-- **Most Frequent Words** in video titles
-- **WordCloud** from video titles
+1. `title`, `description`, `tags` sütunları seçildi ve temizlendi.
+2. Bu sütunlar birleştirilerek tek bir `text` kolonu oluşturuldu.
+3. **TF-IDF** ile metin vektörleştirildi.
+4. **Cosine similarity** ile videolar arası benzerlik hesaplandı.
+5. Kullanıcı başlığına en çok benzeyen ilk 5 video önerildi.
 
 ---
 
-## 📌 How to Use
+## 💻 Web Uygulaması (Streamlit)
+
+Projeye bir Streamlit arayüzü entegre edildi.
+
+### 🚀 Uygulamayı Başlatmak:
 
 ```bash
 pip install -r requirements.txt
-jupyter notebook youtube_recommender.ipynb
+streamlit run app.py
 
 
+
+
+Kullanıcı arayüzü üzerinden bir video başlığı girerek önerileri alabilirsiniz.(verisetindene varsa)
+
+📊 Görselleştirme
+En sık kullanılan 15 YouTube etiketi
+
+Başlıklarda en sık geçen 15 kelime
+
+Kelime bulutu (word cloud) gösterimi
+
+📁 Dosya Yapısı
 youtube-recommendation/
-├── USvideos.csv
+├── USvideos_sample.csv
+├── app.py
 ├── youtube_recommender.ipynb
+├── tfidf_vectorizer.pkl
+├── cosine_similarity.pkl
+├── youtube_df.pkl
+├── title_indices.pkl
 ├── requirements.txt
 └── README.md
 
 
-✍️ Author
+🌐 Model Paylaşımı (Opsiyonel)
+Eğitilen modeller Hugging Face üzerine yüklenebilir:
+https://huggingface.co/yazodi/youtube-video-recommender
+
+✍️ Yazar
 Hande Çarkcı
-📫 GitHub | 💡 Data Science & AI Learner
+📫 GitHub | 💡 Data Science & AI Öğrencisi
 
+📦 Requirements
 
-
----
-
-### 📦 Ekstra: `requirements.txt`
-
-```txt
+streamlit
 pandas
 numpy
 scikit-learn
+joblib
 matplotlib
 wordcloud
+
+
+---
